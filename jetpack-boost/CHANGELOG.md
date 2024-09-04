@@ -5,10 +5,31 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.4.9] - 2024-09-03
+### Fixed
+- Update `automattic/jetpack-image-cdn` package to resolve a PHP fatal error.
+
+## [3.4.8] - 2024-09-02
+### Changed
+- Admin menu: change order of Jetpack sub-menu items [#39095]
+- Page Cache: Update notice for WP Cloud clients.
+- React: Changing global JSX namespace to React.JSX [#38585]
+
+### Fixed
+- Cloud CSS: Fixed not properly storing CSS returned from the cloud after a theme switch. [#38985]
+- Lossless image optimization for images (should improve performance with no visible changes). [#38750]
+- Misc: Fix PHP warning when generating critical css for some taxonomy pages. [#38807]
+- Revert recent SVG image optimizations. [#38981]
+- UI: Fix inconsistencies. [#39072]
+- Updated package dependencies. [#38464]
+
+## [3.4.7] - 2024-07-10
+### Security
+- General: Improved image and CSS proxy functionalities with CDN support, caching, and other enhancements. [#38252]
+
 ## [3.4.6] - 2024-06-26
 ### Added
 - General: Automatically enables Page Cache when migrating from WP Super Cache. [#37963]
-
 
 ### Fixed
 - Image CDN: Improvements to more closely match WP core behavior. [#37931] [#37946]
@@ -477,6 +498,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - First public alpha release
 
+[3.4.9]: https://github.com/Automattic/jetpack-boost-production/compare/3.4.8...3.4.9
+[3.4.8]: https://github.com/Automattic/jetpack-boost-production/compare/3.4.7...3.4.8
+[3.4.7]: https://github.com/Automattic/jetpack-boost-production/compare/3.4.6...3.4.7
 [3.4.6]: https://github.com/Automattic/jetpack-boost-production/compare/3.4.4...3.4.6
 [3.4.4]: https://github.com/Automattic/jetpack-boost-production/compare/3.4.3...3.4.4
 [3.4.3]: https://github.com/Automattic/jetpack-boost-production/compare/3.4.2...3.4.3
