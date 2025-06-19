@@ -2,10 +2,10 @@
 Contributors: automattic, xwp, adnan007, bjorsch, danwalmsley, davidlonjon, dilirity, donncha, ebinnion, exelero, jeherve, jpolakovic, karthikbhatb, kraftbj, lsarsfield, luchad0res, pyronaur, rheinardkorf, scruffian, thingalon
 Donate link: https://automattic.com
 Tags: performance, speed, web vitals, critical css, cache
-Requires at least: 6.6
+Requires at least: 6.7
 Tested up to: 6.8
 Requires PHP: 7.2
-Stable tag: 3.13.0
+Stable tag: 4.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -183,23 +183,25 @@ If you run into compatibility issues, please do let us know. You can drop us a l
 2. Jetpack Boost Speed Improvement
 
 == Changelog ==
-### 3.13.0 - 2025-04-01
+### 4.1.0 - 2025-06-18
 #### Added
-- Cornerstone Pages: Add speculation rules toggle to prerender those URLs
-- Improve the onboarding experience of Jetpack guiding the users through a new onboarding process.
-- Speculation rules: Add Cornerstone Pages to the WP speculation rules for displaying
+- LCP Optimization: New Largest Contentful Paint (LCP) optimization feature to improve loading performance of Cornerstone pages.
 
 #### Changed
-- General: Update interstitial modal secondary button to use URL from Jetpack Redirect
-- Critical CSS: Improve reliability of generation by running hooks after saving the state.
-- General: Indicate compatibility with the upcoming version of WordPress - 6.8.
-- General: Update Class/Interface file names to adhere to WordPress Convention
-- UI: Show module loading errors with details.
+- Auto-Resize Lazy Images: Remove beta tag.
+- E2E Tests: Update config file encryption algorithm.
+- My Jetpack: Hide backup failure notice when backups are deactivated.
+- My Jetpack: Optimize the images for onboarding slider for faster page load.
 - Update package dependencies.
 
+#### Removed
+- Cornerstone Pages: Remove "Experimental" tag from UI.
+
 #### Fixed
-- Admin Menu: Ensure Akismet menu item display alongside standalone.
-- Misc: Fix incorrectly registering plugin text domain.
+- General: Fix storage data persisting after clear.
+- My Jetpack: Fix Onboarding UI responsiveness at 600px.
+- My Jetpack: Fix readability of license activation button on hover.
+- Speed Scores: Fix not waiting for Cloud CSS to finish generating before refreshing the scores.
 
 --------
 
