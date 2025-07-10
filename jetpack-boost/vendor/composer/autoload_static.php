@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitb1e77e6231d50e7663f84529b6a3dfda_jetpack_boostⓥ4_1_0
+class ComposerStaticInitb1e77e6231d50e7663f84529b6a3dfda_jetpack_boostⓥ4_1_2
 {
     public static $files = array (
         '3773ef3f09c37da5478d578e32b03a4b' => __DIR__ . '/../..' . '/jetpack_vendor/automattic/jetpack-assets/actions.php',
@@ -295,6 +295,7 @@ class ComposerStaticInitb1e77e6231d50e7663f84529b6a3dfda_jetpack_boostⓥ4_1_0
         'Automattic\\Jetpack_Boost\\Contracts\\Has_Slug' => __DIR__ . '/../..' . '/app/contracts/interface-has-slug.php',
         'Automattic\\Jetpack_Boost\\Contracts\\Is_Always_On' => __DIR__ . '/../..' . '/app/contracts/interface-is-always-on.php',
         'Automattic\\Jetpack_Boost\\Contracts\\Needs_To_Be_Ready' => __DIR__ . '/../..' . '/app/contracts/interface-needs-to-be-ready.php',
+        'Automattic\\Jetpack_Boost\\Contracts\\Needs_Website_To_Be_Public' => __DIR__ . '/../..' . '/app/contracts/interface-needs-website-to-be-public.php',
         'Automattic\\Jetpack_Boost\\Contracts\\Optimization' => __DIR__ . '/../..' . '/app/contracts/interface-optimization.php',
         'Automattic\\Jetpack_Boost\\Contracts\\Sub_Feature' => __DIR__ . '/../..' . '/app/contracts/interface-sub-feature.php',
         'Automattic\\Jetpack_Boost\\Data_Sync\\Cornerstone_Pages_Entry' => __DIR__ . '/../..' . '/app/data-sync/class-cornerstone-pages-entry.php',
@@ -337,6 +338,7 @@ class ComposerStaticInitb1e77e6231d50e7663f84529b6a3dfda_jetpack_boostⓥ4_1_0
         'Automattic\\Jetpack_Boost\\Lib\\Debug' => __DIR__ . '/../..' . '/app/lib/class-debug.php',
         'Automattic\\Jetpack_Boost\\Lib\\Environment_Change_Detector' => __DIR__ . '/../..' . '/app/lib/class-environment-change-detector.php',
         'Automattic\\Jetpack_Boost\\Lib\\Minify' => __DIR__ . '/../..' . '/app/lib/class-minify.php',
+        'Automattic\\Jetpack_Boost\\Lib\\Minify\\Cleanup_Stored_Paths' => __DIR__ . '/../..' . '/app/lib/minify/class-cleanup-stored-paths.php',
         'Automattic\\Jetpack_Boost\\Lib\\Minify\\Concatenate_CSS' => __DIR__ . '/../..' . '/app/lib/minify/class-concatenate-css.php',
         'Automattic\\Jetpack_Boost\\Lib\\Minify\\Concatenate_JS' => __DIR__ . '/../..' . '/app/lib/minify/class-concatenate-js.php',
         'Automattic\\Jetpack_Boost\\Lib\\Minify\\Config' => __DIR__ . '/../..' . '/app/lib/minify/class-config.php',
@@ -440,6 +442,7 @@ class ComposerStaticInitb1e77e6231d50e7663f84529b6a3dfda_jetpack_boostⓥ4_1_0
         'MatthiasMullie\\Minify\\Exceptions\\BasicException' => __DIR__ . '/..' . '/matthiasmullie/minify/src/Exceptions/BasicException.php',
         'MatthiasMullie\\Minify\\Exceptions\\FileImportException' => __DIR__ . '/..' . '/matthiasmullie/minify/src/Exceptions/FileImportException.php',
         'MatthiasMullie\\Minify\\Exceptions\\IOException' => __DIR__ . '/..' . '/matthiasmullie/minify/src/Exceptions/IOException.php',
+        'MatthiasMullie\\Minify\\Exceptions\\PatternMatchException' => __DIR__ . '/..' . '/matthiasmullie/minify/src/Exceptions/PatternMatchException.php',
         'MatthiasMullie\\Minify\\JS' => __DIR__ . '/..' . '/matthiasmullie/minify/src/JS.php',
         'MatthiasMullie\\Minify\\Minify' => __DIR__ . '/..' . '/matthiasmullie/minify/src/Minify.php',
         'MatthiasMullie\\PathConverter\\Converter' => __DIR__ . '/..' . '/matthiasmullie/path-converter/src/Converter.php',
@@ -451,9 +454,9 @@ class ComposerStaticInitb1e77e6231d50e7663f84529b6a3dfda_jetpack_boostⓥ4_1_0
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitb1e77e6231d50e7663f84529b6a3dfda_jetpack_boostⓥ4_1_0::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitb1e77e6231d50e7663f84529b6a3dfda_jetpack_boostⓥ4_1_0::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInitb1e77e6231d50e7663f84529b6a3dfda_jetpack_boostⓥ4_1_0::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitb1e77e6231d50e7663f84529b6a3dfda_jetpack_boostⓥ4_1_2::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitb1e77e6231d50e7663f84529b6a3dfda_jetpack_boostⓥ4_1_2::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitb1e77e6231d50e7663f84529b6a3dfda_jetpack_boostⓥ4_1_2::$classMap;
 
         }, null, ClassLoader::class);
     }
