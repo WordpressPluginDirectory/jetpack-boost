@@ -124,12 +124,13 @@ class Jetpack_Boost {
 		add_action( 'admin_init', array( $this, 'schedule_version_change' ) );
 
 		add_action( 'init', array( $this, 'init_textdomain' ) );
+		add_action( 'init', array( $this, 'setup_cron_schedules' ) );
 
 		add_action( 'jetpack_boost_environment_changed', array( $this, 'handle_environment_change' ), 10, 2 );
 
 		add_action( 'jetpack_boost_handle_version_change_cron', array( $this, 'handle_version_change' ) );
 
-		add_filter( 'cron_schedules', array( $this, 'custom_cron_intervals' ) );
+		add_action( 'jetpack_boost_general_cleanup', array( Transient::class, 'delete_expired' ) );
 
 		// Fired when plugin ready.
 		do_action( 'jetpack_boost_loaded', $this );
@@ -197,6 +198,18 @@ class Jetpack_Boost {
 			// Schedule the cronjob to preload the cache for Cornerstone Pages.
 			( new Cache_Preload() )->schedule_cornerstone_cronjob();
 		}
+
+		// Setup a cleanup job
+		if ( ! wp_next_scheduled( 'jetpack_boost_general_cleanup' ) ) {
+			wp_schedule_event( time(), 'daily', 'jetpack_boost_general_cleanup' );
+		}
+	}
+
+	/**
+	 * Adds the custom cron intervals to the schedules list.
+	 */
+	public function setup_cron_schedules() {
+		add_filter( 'cron_schedules', array( $this, 'custom_cron_intervals' ) );
 	}
 
 	/**
@@ -246,6 +259,11 @@ class Jetpack_Boost {
 
 		$modules_setup = new Modules_Setup();
 
+		// Setup a cleanup job
+		if ( ! wp_next_scheduled( 'jetpack_boost_general_cleanup' ) ) {
+			wp_schedule_event( time(), 'daily', 'jetpack_boost_general_cleanup' );
+		}
+
 		/*
 		 * Check what modules are already active (from a previous activation for example).
 		 * If there are active modules, we need to ensure each module-related event is triggered again.
@@ -267,12 +285,34 @@ class Jetpack_Boost {
 	public function deactivate() {
 		do_action( 'jetpack_boost_deactivate' );
 
+		wp_clear_scheduled_hook( 'jetpack_boost_general_cleanup' );
+
 		// Tell Minify JS/CSS to clean up.
 		jetpack_boost_page_optimize_deactivate();
 
 		Regenerate_Admin_Notice::dismiss();
 		Analytics::record_user_event( 'deactivate_plugin' );
 		Page_Cache_Setup::deactivate();
+
+		// Clean up Image Size Analysis data.
+		$this->cleanup_image_size_analysis_data();
+	}
+
+	/**
+	 * Clean up Image Size Analysis data from the database.
+	 *
+	 * @since 4.3.0
+	 */
+	private function cleanup_image_size_analysis_data() {
+		global $wpdb;
+
+		// Delete all post meta entries for Image Size Analysis fixes.
+		//phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
+		$wpdb->delete(
+			$wpdb->postmeta,
+			array( 'meta_key' => '_jb_image_fixes' ),
+			array( '%s' )
+		);
 	}
 
 	/**
@@ -382,7 +422,7 @@ class Jetpack_Boost {
 		( new Critical_CSS_Storage() )->clear();
 
 		// Delete all transients created by boost.
-		Transient::delete_by_prefix( '' );
+		Transient::delete_bulk();
 
 		// Clear getting started value
 		( new Getting_Started_Entry() )->set( false );
